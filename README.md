@@ -21,7 +21,6 @@ The default page should automatically load in your browser
 
 Edit page1.js for changing the content of the page, and edit page2.css to edit the styling for the page
 
-**Note: This javascript (js) files have use the React framework, so it has some elements similar to HTML but it's not the same**
 
 ## Push changes
 
