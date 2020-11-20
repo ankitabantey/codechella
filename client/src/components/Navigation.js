@@ -9,10 +9,10 @@ import EventManager from '../Pages/EventManager'
 export default function Navigation() {
     return (
         <Switch>
-            <Route path='/' component={Home}/>
-            <Route path='/events/:eventID' component={EventPage}/>
-            <Route path='/manage' component={EventManager}/>
-            <Route path='/new' component={NewEvent}/>
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/events/:eventID' component={EventPage}/>
+            <Route exact path='/manage' component={EventManager}/>
+            <Route exact path='/new' component={NewEvent}/>
             <Redirect to='/'/>
         </Switch>    
     )
