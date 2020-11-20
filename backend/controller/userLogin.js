@@ -8,4 +8,5 @@ const login = async (req, res, next) => {
     if (!errors.isEmpty()) {
         return next(new HttpError(`invalid input details, Cannot log you in, ${req.body.name,req.body.email,req.body.type}`, 422));
       }
+      const { twitterHandle, password } = req.body;
 }

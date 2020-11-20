@@ -1,7 +1,8 @@
 const express=require('express');
 const bodyParser = require("body-parser");
 const mongoose=require('mongoose');
-
+const passport = require('passport')
+const TwitterStrategy = require('passport-twitter')
 const http=require('http');
 const app=express();
 
@@ -18,6 +19,23 @@ app.use((req, res, next) => {
     );
   
     next();
+  });
+  console.log(TwitterStrategy)
+  passport.use(new TwitterStrategy({
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callbackURL: process.env.CALLBACK_URL
+  }), (token, tokenSecret, profile, cb) => {
+    // interact with DB here
+  })
+
+  app.get('/auth/twitter', passport.authenticate('twitter'))
+
+  app.get('/auth/twitter/callback', 
+  passport.authenticate('twitter', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
   });
 
 
