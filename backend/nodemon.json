@@ -1,0 +1,8 @@
+{
+    "env":{
+        "DB_USER":"codechella",
+        "DB_PASSWORD":"codechella123",
+        "DB_NAME":"codechella",
+        "JWT_KEY":"secret_key"
+    }
+}
