@@ -1,8 +1,0 @@
-{
-    "env":{
-        "DB_USER":"codechella",
-        "DB_PASSWORD":"codechella123",
-        "DB_NAME":"codechella",
-        "TWITTER_CONSUMER_KEY":"secret_key"
-    }
-}

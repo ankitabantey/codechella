@@ -5,6 +5,7 @@ const passport = require('passport')
 const TwitterStrategy = require('passport-twitter')
 const http=require('http');
 const app=express();
+const session = require('express-session')
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -20,14 +21,19 @@ app.use((req, res, next) => {
   
     next();
   });
-  console.log(TwitterStrategy)
   passport.use(new TwitterStrategy({
     consumerKey: process.env.TWITTER_CONSUMER_KEY,
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-    callbackURL: process.env.CALLBACK_URL
-  }), (token, tokenSecret, profile, cb) => {
-    // interact with DB here
-  })
+    callbackURL: process.env.CALLBACK_URL 
+  },
+  function(token, tokenSecret, profile, cb) {
+    console.log(token)
+    console.log(tokenSecret)
+    console.log(profile)
+  }
+));
+
+app.use(session({secret: process.env.SESSION_SECRET}))
 
   app.get('/auth/twitter', passport.authenticate('twitter'))
 
@@ -35,8 +41,9 @@ app.use((req, res, next) => {
   passport.authenticate('twitter', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect(process.env.AUTH_REDIRECT);
   });
+
 
 
 const url=`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ib2iv.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
