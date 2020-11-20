@@ -1,6 +1,7 @@
-const mongoose=require('mongoose');
+import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
+
 const schema = mongoose.Schema;
-const uniqueValidator=require('mongoose-unique-validator');
 
 const userAuthSchema = schema({
     twitterHandle:{type:String, required:true, unique:true},
@@ -10,4 +11,4 @@ const userAuthSchema = schema({
 
 
 userAuthSchema.plugin(uniqueValidator);
-module.exports=mongoose.model("UserAuth",userAuthSchema);
+export default mongoose.model("Userdetails",userAuthSchema);
