@@ -12,6 +12,9 @@
   "description": "",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.10.15"
+    "express-validator": "^6.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.15",
+    "mongoose-unique-validator": "^2.0.3"
   }
 }
