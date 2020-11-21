@@ -5,9 +5,11 @@ import authConfig from '../auth/index.js'
 import userAuthModel from '../models/userAuth.js';
 import routes from '../routes/index.js'
 import cors from 'cors'
+import bodyParser from 'body-parser'
 
 export default async (config) => {
     const app = express()
+    app.use(bodyParser.json())
     app.options('*',cors())
     app.use((req, res, next) => {
         res.setHeader("Access-Control-Allow-Origin", config.CLIENT_URL);
