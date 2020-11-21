@@ -3,7 +3,8 @@ import userAuth from '../models/userAuth.js'
 
 
 export default async (req, res) => {
-    let token = req.header('authorization')
+    console.log('called getCurrentUser')
+    let token = req.header('Authorization')
     if(token) {
         token = token.split(' ')[1]
     }

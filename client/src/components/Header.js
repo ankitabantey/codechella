@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Heading, Flex, Text, Button } from "@chakra-ui/react";
+import { Box, Heading, Flex, Text, Button, Avatar } from "@chakra-ui/react";
+import {useUser} from '../providers/UserProvider'
 
 const MenuItems = ({ children }) => (
   <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
@@ -10,6 +11,8 @@ const MenuItems = ({ children }) => (
 const Header = props => {
   const [show, setShow] = React.useState(false);
   const handleToggle = () => setShow(!show);
+  
+  const {user, isSignedIn, signIn, signOut} = useUser()
 
   return (
     <Flex
@@ -58,9 +61,12 @@ const Header = props => {
         display={{ sm: show ? "block" : "none", md: "block" }}
         mt={{ base: 4, md: 0 }}
       >
-        <Button bg="transparent" border="1px">
+        {isSignedIn ?
+        <Avatar as='button' onClick={signOut} name={user.name} src={user.imageUrl}/>
+        :
+        <Button bg="transparent" border="1px" onClick={signIn}>
           Login With Twitter
-        </Button>
+        </Button>}
       </Box>
     </Flex>
   );

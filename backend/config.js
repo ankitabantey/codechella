@@ -7,4 +7,5 @@ export default {
     CALLBACK_URL: process.env.CALLBACK_URL,
     SESSION_SECRET: process.env.SESSION_SECRET,
     AUTH_REDIRECT: process.env.AUTH_REDIRECT,
+    CLIENT_URL: process.env.CLIENT_URL
 }
