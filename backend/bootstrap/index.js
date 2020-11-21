@@ -3,6 +3,8 @@ import mongoose from 'mongoose'
 import session from 'express-session'
 import authConfig from '../auth/index.js'
 import userAuthModel from '../models/userAuth.js';
+import routes from '../routes/index.js'
+
 
 export default async (config) => {
     const app = express()
@@ -24,6 +26,7 @@ export default async (config) => {
 
     app.use(session({ secret: config.SESSION_SECRET }))
     await authConfig(app, config, userAuthModel)
+    app.use('/', routes)
     const url = `mongodb+srv://${config.DB_USER}:${config.DB_PASSWORD}@cluster0.ib2iv.mongodb.net/${config.DB_NAME}?retryWrites=true&w=majority`
     await mongoose.connect(url)
     app.listen({port: 5000})
