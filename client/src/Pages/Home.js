@@ -1,7 +1,7 @@
 import { loadModules } from 'esri-loader';
 import { WebMapView } from '../components/WebMapView';
 import { Grid, GridItem, Box, Flex, Spacer } from "@chakra-ui/react"
-import { Spinner } from '@chakra-ui/react'
+import { Spinner, Center } from '@chakra-ui/react'
 import axios from 'axios'
 import React, {useContext} from 'react'
 import TweetList from '../components/TweetList'
@@ -27,7 +27,7 @@ export default function Home() {
 
     }, [])
 
-    if (!events) return <Spinner />
+    if (!events) return <Box p={30}><Center><Spinner /></Center></Box>
 
 
 
