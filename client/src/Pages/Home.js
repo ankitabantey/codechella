@@ -5,6 +5,7 @@ import { Spinner } from '@chakra-ui/react'
 import axios from 'axios'
 import React from 'react'
 import TweetList from '../components/TweetList'
+import EventInfo from '../components/EventInfo'
 
 
 export default function Home() {
@@ -45,6 +46,7 @@ export default function Home() {
                         <WebMapView geocodes={events.map(event => event.location)} />
                     </GridItem>
                     <GridItem rowSpan={5} colSpan={2} bg="ghostWhite">
+                        <EventInfo />
                     </GridItem>
                     <GridItem rowSpan={5} colSpan={8}>
                         <TweetList events={events} onEventSelect={(event) => setSelectedEvent(event)}/>

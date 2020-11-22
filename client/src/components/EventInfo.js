@@ -23,6 +23,7 @@ export class EventInfo extends React.Component {
         <Box className="fullsize" backgroundColor="white">
           <Box h="80%" backgroundColor="white">
             <Box p={5} backgroundColor="GhostWhite" borderRadius="16px" >
+            <h1>Event Details</h1>
             <p>Event Title</p>
             <p>Description</p>
             <p>Location</p>
