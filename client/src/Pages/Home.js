@@ -10,6 +10,7 @@ import TweetList from '../components/TweetList'
 export default function Home() {
 
     const [events, setEvents] = React.useState(null)
+    const [selectedEvent, setSelectedEvent] = React.useState(null)
 
     async function getEvents() {
         const res = await axios.get('/getEvents')
@@ -46,7 +47,7 @@ export default function Home() {
                     <GridItem rowSpan={5} colSpan={2} bg="ghostWhite">
                     </GridItem>
                     <GridItem rowSpan={5} colSpan={8}>
-                        <TweetList events={events} />
+                        <TweetList events={events} onEventSelect={(event) => setSelectedEvent(event)}/>
                     </GridItem>
                 </Grid>
             </Flex>

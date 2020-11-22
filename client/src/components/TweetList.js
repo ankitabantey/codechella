@@ -5,13 +5,13 @@ import { ArrowLeftIcon, ArrowRightIcon,} from '@chakra-ui/icons'
 
 
 
-export default function TweetList({ events }) {
+export default function TweetList({ events, onEventSelect={onEventSelect} }) {
     return (
 
         <Flex direction="column">
             <Tabs variant="enclosed">
                 <TabList>
-                    {events.map(event => <Tab key={event.id}>{event.name}</Tab>)}
+                    {events.map(event => <Tab onClick={() => onEventSelect(event)} key={event.id}>{event.name}</Tab>)}
                 </TabList>
 
                 <TabPanels>
