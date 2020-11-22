@@ -1,9 +1,10 @@
 import React from "react";
 import { Box, Heading, Flex, Text, Button, Avatar } from "@chakra-ui/react";
 import {useUser} from '../providers/UserProvider'
+import {useHistory} from 'react-router-dom'
 
-const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+const MenuItems = ({ children, onClick }) => (
+  <Text onClick={onClick} cursor='pointer' mt={{ base: 4, md: 0 }} mr={6} display="block">
     {children}
   </Text>
 );
@@ -11,7 +12,7 @@ const MenuItems = ({ children }) => (
 const Header = props => {
   const [show, setShow] = React.useState(false);
   const handleToggle = () => setShow(!show);
-  
+  const history = useHistory()
   const {user, isSignedIn, signIn, signOut} = useUser()
 
   return (
@@ -47,14 +48,12 @@ const Header = props => {
         display={{ sm: show ? "block" : "none", md: "flex" }}
         width={{ sm: "full", md: "auto" }}
         alignItems="center"
-        justifyContent='space-evenly'
+        justifyContent='flex-start'
+        ml='50px'
         mr='20vw'
         flexGrow={1}
       >
-        <MenuItems>Create Event</MenuItems>
-        <MenuItems>Saved Events</MenuItems>
-        <MenuItems>Resources</MenuItems>
-        <MenuItems>Mission</MenuItems>
+        <MenuItems as='a' onClick={() => history.push('/new')}>Create Event</MenuItems>
       </Box>
 
       <Box

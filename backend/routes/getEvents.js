@@ -3,9 +3,7 @@ import Events from '../models/event.js'
 import twitterClient from '../twitter/index.js'
 export default async (req, res) => {
     
-    let events = await Events.find({}).limit(20)
-    events.push({hashtags: ['codechella']})
-    console.log(events)
+    let events = await Events.find({}).limit(20).lean().exec()
     let eventsWithTweets = []
     for(const event of events) {
         let q = event.hashtags.map(e => `#${e}`).join(' OR')
