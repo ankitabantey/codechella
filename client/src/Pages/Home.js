@@ -1,6 +1,6 @@
 import { loadModules } from "esri-loader";
 import { WebMapView } from "../components/WebMapView";
-import { Grid, GridItem, Box, Flex, Spacer } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Flex, Avatar } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useContext } from "react";
@@ -19,10 +19,13 @@ import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import { Button } from "@material-ui/core";
 import EventInfo from '../components/EventInfo'
 import EventProvider, { EventContext } from '../providers/EventProvider.js';
+import { useUser } from '../providers/UserProvider';
 
 export default function Home() {
   const [events, setEvents] = React.useState(null);
   const [selectedEvent, setSelectedEvent] = React.useState(null);
+  const { user, isSignedIn, signIn, signOut } = useUser()
+
 
   const eventContext = useContext(EventContext);
 
@@ -46,9 +49,9 @@ export default function Home() {
             <div className="sidebar">
               {/* Twitter Icon */}
               <TwitterIcon className="siderbar__twitterIcon" />
-              <SidebarOption active Icon={HomeIcon} text="Home" />
+              <SidebarOption Icon={HomeIcon} text="Home" />
               <SidebarOption Icon={SearchIcon} text="Explore" />
-              <SidebarOption Icon={SearchIcon} text="Event" />
+              <SidebarOption active Icon={SearchIcon} text="Flights" />
               <SidebarOption
                 Icon={NotificationsNoneIcon}
                 text="Notifications"
@@ -59,6 +62,12 @@ export default function Home() {
               <SidebarOption Icon={PermIdentityIcon} text="Profile" />
               <SidebarOption Icon={MoreHorizIcon} text="More" />
               {/* Button -> Tweet */}
+              {isSignedIn ?
+                <Avatar ml='40px' as='button' onClick={signOut} name={user.name} src={user.imageUrl} />
+                :
+                <Button bg="transparent" border="1px" onClick={signIn}>
+                  Login With Twitter
+        </Button>}
               <Button variant="outlined" className="siderbar__tweet" fullWidth>
                 TWEET
               </Button>
