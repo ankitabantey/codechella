@@ -5,7 +5,7 @@ const schema = mongoose.Schema;
 
 const EventSchema = schema({
     name: String,
-    id: { type: Number, required: true, unique: true },
+    id: { type: String, required: true, unique: true },
     description: String,
     isVirtual: Boolean,
     location: { type: [Number] },
