@@ -11,8 +11,8 @@ export class WebMapView extends React.Component {
 
   componentDidMount() {
     // lazy load the required ArcGIS API for JavaScript modules and CSS
-    loadModules(['esri/Map', 'esri/views/MapView', 'esri/Graphic', 'esri/layers/GraphicsLayer'], { css: true })
-    .then(([ArcGISMap, MapView, Graphic, GraphicsLayer]) => {
+    loadModules(['esri/Map', 'esri/views/MapView', 'esri/Graphic', 'esri/layers/GraphicsLayer', "esri/geometry/Point"], { css: true })
+    .then(([ArcGISMap, MapView, Graphic, GraphicsLayer, Point]) => {
       const map = new ArcGISMap({
         basemap: 'gray-vector'
       });
@@ -25,29 +25,75 @@ export class WebMapView extends React.Component {
       });
 
       var graphicsLayer = new GraphicsLayer();
-       map.add(graphicsLayer);
+      //map.add(graphicsLayer);
 
-       var point = {
+       /* var point = {
         type: "point",
         longitude: -118.80657463861,
         latitude: 34.0005930608889
-      };
+      }; */
 
       var simpleMarkerSymbol = {
         type: "simple-marker",
-        color: [226, 119, 40],  // orange
+        color: [0, 172, 230],  // blue
         outline: {
           color: [255, 255, 255], // white
           width: 1
         }
       };
 
-      var pointGraphic = new Graphic({
-        geometry: point,
-        symbol: simpleMarkerSymbol
-      });
+       var coord = [[-118.80657463861, 34.0005930608889], [-118.31966, 34.13375]];
 
-      graphicsLayer.add(pointGraphic);
+      if (this.props.geocodes != null){
+      coord = this.props.geocodes;
+      }
+      console.log(coord); 
+      console.log("Hello");
+      for (var i=0; i<coord.length; i++){
+        var point = {
+          type: "point",
+          longitude: coord[i][1],
+          latitude: coord[i][0]
+        };
+        var g = new Graphic({
+          geometry: point,
+          symbol: simpleMarkerSymbol
+          });
+        graphicsLayer.add(g);
+        map.add(graphicsLayer);
+      }
+        
+
+      //if (this.props.geocodes != null){
+      //coord = this.props.geocodes;
+      //}
+      //if (coord != null){
+       //coord.forEach(myFunction);
+       // function myFunction(item) {
+        //console.log(item[coord.indexOf(item)][0]);
+        //console.log(item[coord.indexOf(item)][1]);
+       // console.log(coord);
+       // var pointGraphic = new Graphic({
+      //  geometry: {
+      //    type: Point,
+      //    longitude: item[0][0],
+      //    latitude: item[0][1]
+      //  },
+      //  symbol: simpleMarkerSymbol
+      //});
+
+      //graphicsLayer.add(pointGraphic);
+
+        /* var p = new Point(item[0][0], item[1][1]);
+        var g = new Graphic({
+        geometry: p,
+        symbol: simpleMarkerSymbol
+        }); */
+        
+       //graphicsLayer.add(g);
+       // }
+     // }
+     // console.log(coord); 
 
     });
   }
