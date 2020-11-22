@@ -1,7 +1,7 @@
 
 import { loadModules } from "esri-loader";
 import { WebMapView } from "../components/WebMapView";
-import { Grid, GridItem, Box, Flex, Avatar } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Flex, Avatar, Center } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useContext } from "react";
@@ -50,7 +50,6 @@ export default function Home() {
     <Box p={10}>
       <Flex>
         <Box w="200px" h="100vh" bg="transparent" mr="10px">
-          {
             <div className="sidebar">
               {/* Twitter Icon */}
               <TwitterIcon className="siderbar__twitterIcon" />
@@ -76,8 +75,7 @@ export default function Home() {
               <Button variant="outlined" className="siderbar__tweet" fullWidth>
                 TWEET
               </Button>
-            </Box>
-          
+              </div>
         </Box>
         <Grid
           h="100vh"
