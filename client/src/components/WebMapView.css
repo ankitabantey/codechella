@@ -11,8 +11,7 @@
   }
 
 .webmapChakra {
-    height: 380px;
-    width: 527px;
-    border-left: 10px solid white;
+    min-width: 100%;
+    min-height: 100%;
   }
   
