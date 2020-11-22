@@ -1,6 +1,6 @@
 import React from 'react';
 import { loadModules } from 'esri-loader';
-import './WebMapView.css'; 
+import './components.css'; 
 import { Box, Flex, Spacer } from "@chakra-ui/react"
 
 export class WebMapView extends React.Component {
@@ -62,7 +62,7 @@ export class WebMapView extends React.Component {
   render() {
     return (
         // if you want to revert to old css styling, change webmapChakra to webmap
-        <Box className="webmapChakra" ref={this.mapRef}></Box>
+        <Box className="fullsize" ref={this.mapRef}></Box>
 
     );
   }
