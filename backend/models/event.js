@@ -10,8 +10,8 @@ const EventSchema = schema({
     isVirtual: Boolean,
     location: { type: [Number] },
     hashtags: { type: [String] },
-    owner: String,
-    ownerID: String,
+    owner: {type: String, unique: false},
+    ownerID: {type: String, unique: false},
     startDate: { type: Date, default: Date.now() },
     endDate: { type: Date }
 

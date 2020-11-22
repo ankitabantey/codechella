@@ -11,6 +11,7 @@ const UserContextProvider = ({ children }) => {
     axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL
     const [user, setUser] = useState(null)
     const [jwt, setJwt] = React.useState(Cookies.get('jwt'))
+    const [loading, setLoading] = React.useState(true)
 
     const isSignedIn = React.useMemo(() => Boolean(user), [user])
 
@@ -30,8 +31,11 @@ const UserContextProvider = ({ children }) => {
          if (jwt) {
                 axios.get('/getCurrentUser', {headers: {'Authorization': `Bearer ${jwt}`}}).then(res => {
                     if(res) setUser(res.data)
+                    console.log(res.data)
+                    setLoading(false)
                 })
             }
+            setLoading(false)
     }, [jwt])
 
     const value = React.useMemo(() => ({
@@ -39,8 +43,9 @@ const UserContextProvider = ({ children }) => {
         signOut,
         user,
         isSignedIn
-    }), [user])
+    }), [user,jwt])
 
+    if(loading) return <></>
     return (
         <UserContext.Provider value={value}>
             {children}

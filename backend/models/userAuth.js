@@ -4,7 +4,7 @@ import uniqueValidator from 'mongoose-unique-validator';
 const schema = mongoose.Schema;
 
 const userAuthSchema = schema({
-    twitterHandle:{type:String, required:true, unique:true},
+    twitterHandle:{type:String, required:true},
     name:{type:String,required:true},
     imageUrl:{type:String, required:true },
     twitterToken: String,
