@@ -37,13 +37,13 @@ export default function Home() {
     <Box p={10}>
       <Flex>
         <Box w="20vw" h="100vh" bg="transparent" mr="10px">
-          function Sidebar(){" "}
           {
             <div className="sidebar">
               {/* Twitter Icon */}
               <TwitterIcon className="siderbar__twitterIcon" />
               <SidebarOption active Icon={HomeIcon} text="Home" />
               <SidebarOption Icon={SearchIcon} text="Explore" />
+              <SidebarOption Icon={SearchIcon} text="Event" />
               <SidebarOption
                 Icon={NotificationsNoneIcon}
                 text="Notifications"
