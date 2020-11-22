@@ -11,8 +11,8 @@ export class WebMapView extends React.Component {
 
   componentDidMount() {
     // lazy load the required ArcGIS API for JavaScript modules and CSS
-    loadModules(['esri/Map', 'esri/views/MapView', 'esri/Graphic', 'esri/layers/GraphicsLayer'], { css: true })
-    .then(([ArcGISMap, MapView, Graphic, GraphicsLayer]) => {
+    loadModules(['esri/Map', 'esri/views/MapView', 'esri/Graphic', 'esri/layers/GraphicsLayer', "esri/geometry/Point"], { css: true })
+    .then(([ArcGISMap, MapView, Graphic, GraphicsLayer, Point]) => {
       const map = new ArcGISMap({
         basemap: 'gray-vector'
       });
@@ -48,6 +48,23 @@ export class WebMapView extends React.Component {
       });
 
       graphicsLayer.add(pointGraphic);
+      
+      var coord = [[32.7767, 96.7970]]
+      if (this.props.geocodes != null){
+      coord = this.props.geocodes;
+      }
+      if (coord != null){
+      coord.forEach(myFunction);
+        function myFunction(item) {
+        //console.log(item[coord.indexOf(item)][0]);
+        //console.log(item[coord.indexOf(item)][1]);
+        console.log(coord);
+        var p = new Point(item[0][0], item[1][1]);
+        var g = new Graphic(p);
+        graphicsLayer.add(g);
+        }
+      }
+      console.log(coord);
 
     });
   }
