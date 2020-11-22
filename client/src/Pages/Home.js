@@ -1,3 +1,4 @@
+
 import { loadModules } from "esri-loader";
 import { WebMapView } from "../components/WebMapView";
 import { Grid, GridItem, Box, Flex, Avatar } from "@chakra-ui/react";
@@ -35,11 +36,15 @@ export default function Home() {
   }
 
 
+
+    
+
   React.useEffect(() => {
     getEvents();
   }, []);
 
-  if (!events) return <Spinner />;
+  if (!events) return (<Box p={30}><Center><Spinner /></Center></Box>);
+
 
   return (
     <Box p={10}>
@@ -71,8 +76,8 @@ export default function Home() {
               <Button variant="outlined" className="siderbar__tweet" fullWidth>
                 TWEET
               </Button>
-            </div>
-          }
+            </Box>
+          
         </Box>
         <Grid
           h="100vh"
@@ -84,10 +89,10 @@ export default function Home() {
           <GridItem rowSpan={5} colSpan={6} bg="GhostWhite">
             <WebMapView geocodes={events.map((event) => event.location)} />
           </GridItem>
-          <GridItem rowSpan={5} colSpan={2} bg="ghostWhite">
+          <GridItem rowSpan={10} colSpan={2} bg="ghostWhite">
             <EventInfo />
           </GridItem>
-          <GridItem rowSpan={5} colSpan={8}>
+          <GridItem rowSpan={5} colSpan={6}>
             <TweetList
               events={events}
               onEventSelect={(event) => setSelectedEvent(event)}

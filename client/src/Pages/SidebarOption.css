@@ -6,6 +6,7 @@
 
 .sidebarOption > .MuiSvgIcon-root {
     padding: 20px;
+    padding-left:0px;
 }
 
 .sidebarOption > h2 {

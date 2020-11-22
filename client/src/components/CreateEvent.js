@@ -43,7 +43,7 @@ async function handleSubmit() {
     setStatus('loading')
     await axios.post('/createEvent', { ...event, ownerID: user.twitterHandle, owner: user.name })
     setStatus('done')
-
+    window.location.reload(false);
 }
 
 const [location, setLocation] = React.useState(null)
