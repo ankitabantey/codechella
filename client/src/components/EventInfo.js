@@ -15,7 +15,7 @@ export default function EventInfo() {
   if (eventContext.state.event == null) {
     return (
       <Box className="fullsize" backgroundColor="white">
-      <Box h="80%" backgroundColor="white">
+      <Box h="40%" backgroundColor="white">
         <Box p={5} backgroundColor="GhostWhite" borderRadius="16px" >
         <Center>
           <p>Select an event to view the details</p>
@@ -26,9 +26,9 @@ export default function EventInfo() {
         </Box>
       
       </Box>
-      <Box h="20%">
-      <Center h="100%" w="100%" backgroundColor="white">
-        <Button class="twitterButton" >Create Event</Button>
+      <Box >
+      <Center w="100%" backgroundColor="white">
+        <CreateEvent />
       </Center>
       
       
@@ -51,7 +51,6 @@ export default function EventInfo() {
             <Heading>{eventContext.state.event.name}</Heading>
             <p>{eventContext.state.event.description}</p>
             <p>{eventContext.state.event.date}</p>
-            <p>{eventContext.state.event.time}</p>
             <Link href={link} class="link">Join the virtual event</Link>
             <p>#{eventContext.state.event.hashtags}</p>
             
@@ -78,7 +77,7 @@ export default function EventInfo() {
             <Box p={5} backgroundColor="GhostWhite" borderRadius="16px" >
             <Heading>{eventContext.state.event.name}</Heading>
             <p>{eventContext.state.event.description}</p>
-            <p>{eventContext.state.event.date} {eventContext.state.event.time}</p>
+            <p>{eventContext.state.event.date}</p>
             <p>{eventContext.state.event.hashtags}</p>
             
             

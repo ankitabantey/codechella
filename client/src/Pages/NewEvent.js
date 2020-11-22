@@ -43,11 +43,13 @@ export default function NewEvent() {
     console.log(user)
 
     if(user===null) return(
+    <Box p={30}>
     <Center h="100%">
     <Button onClick={signIn}>
         Sign In First
     </Button>
-    </Center>)
+    </Center>
+    </Box>)
     return (
         <form onSubmit={handleSubmit}>
             <Flex algin='center' justify='center' direction='column' mt='10vh' px='10em'>
@@ -66,8 +68,8 @@ export default function NewEvent() {
                 <FormControl id="time">
                     <FormLabel>Time?</FormLabel>
                     <Input value={event.time} name='time' onChange={e => setEvent({ ...event, time: e.target.value })} placeholder="6:00 PM" />
-                </FormControl>
-                <FormControl id="hashtags">
+                </FormControl >
+                <FormControl id="hashtags" isRequired>
                     <FormLabel>What hashtags are associated with this event?</FormLabel>
                     <Input value={event.hashtags.join(',')} name='hashtags' onChange={e => setEvent({ ...event, hashtags: e.target.value.replace(' ', '').replace('#', '').split(',') })} placeholder="Codechella, CodechellaMeme" />
                 </FormControl>
@@ -76,15 +78,15 @@ export default function NewEvent() {
                     <FormLabel isRequired>Is this event virtual?</FormLabel>
                     <Checkbox value={event.virtual} id="virtual" defaultIsChecked onChange={e => setEvent({ ...event, virtual: e.target.value })}></Checkbox>
                 </FormControl>
-                <FormControl>
+                <FormControl isRequired>
                     <FormLabel isRequired>What's the URL for this event?</FormLabel>
                     <Input value={event.url} name='url' onChange={e => setEvent({ ...event, url: e.target.value })} placeholder="twitter.com" />
                 </FormControl>
-                <FormControl>
+                <FormControl isRequired>
                     <FormLabel isRequired>New York, NY</FormLabel>
                     <LocationInput onComplete={(geocode) => setEvent({ ...event, location: geocode })} />
                 </FormControl>
-                <Button p={5} onClick={handleSubmit} disabled={event.name === '' || event.location === []}>Submit</Button>
+                <Button p={10} onClick={handleSubmit} disabled={event.name === '' || event.location === []}>Submit</Button>
                 {status === 'loading' &&
                     <Spinner />}
                 {status==='done' && <Text>Event Added</Text>}
