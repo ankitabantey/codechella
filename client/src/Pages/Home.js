@@ -3,6 +3,7 @@ import { WebMapView } from '../components/WebMapView';
 import { Grid, GridItem, Box, Flex, Spacer } from "@chakra-ui/react"
 
 import { extendTheme } from "@chakra-ui/react"
+import { HashtagDisplay } from '../components/HashtagDisplay';
 
 export default function Home() {
    
@@ -19,7 +20,7 @@ export default function Home() {
             gap={4}
              >
                 <GridItem rowSpan={5} colSpan={3} bg="GhostWhite">
-                    Mutual Aid
+                    <HashtagDisplay />
                 </GridItem>
                 <GridItem rowSpan={1} colSpan={3} bg="GhostWhite">
                     Search
