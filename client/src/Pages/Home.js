@@ -4,6 +4,7 @@ import { Grid, GridItem, Box, Flex, Spacer } from "@chakra-ui/react"
 import CreateEvent from '../components/CreateEvent';
 import { extendTheme } from "@chakra-ui/react"
 import { HashtagDisplay } from '../components/HashtagDisplay';
+import EventInfo from '../components/EventInfo.js';
 import {Spinner} from '@chakra-ui/react'
 import axios from 'axios'
 import React from 'react'
@@ -47,6 +48,7 @@ export default function Home() {
                     <WebMapView geocodes={events.map(event => event.location)} /> 
                 </GridItem>
                 <GridItem rowSpan={5} colSpan={2} bg="ghostWhite">
+                    <EventInfo />
                 </GridItem>
                 <GridItem rowSpan={5} colSpan={8} bg="GhostWhite">
                     Recent Tweets
