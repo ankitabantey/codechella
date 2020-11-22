@@ -1,0 +1,17 @@
+.webmap {
+    height: 380px;
+    width: 527px;
+    position: absolute;
+    right:0;
+    left: 61%;
+    top: 90px;
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid white;
+  }
+
+.webmapChakra {
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
