@@ -6,6 +6,27 @@ import { ArrowLeftIcon, ArrowRightIcon,} from '@chakra-ui/icons'
 
 
 export default function TweetList({ events, onEventSelect={onEventSelect} }) {
+    if (events.name == "Silence Sam") {
+        console.log("no tweets");
+        return (
+
+            <Flex direction="column">
+                <Tabs variant="enclosed">
+                    <TabList>
+                        {events.map(event => <Tab onClick={() => onEventSelect(event)} key={event.id}>{event.name}</Tab>)}
+                    </TabList>
+    
+                    <TabPanels>
+                        {events.map(event =>
+                            <TabPanel key={event.id}>
+                                
+                            </TabPanel>)}
+                    </TabPanels>
+                </Tabs>
+            </Flex>
+        );
+
+    } else {
     return (
 
         <Flex direction="column">
@@ -24,7 +45,7 @@ export default function TweetList({ events, onEventSelect={onEventSelect} }) {
         </Flex>
 
     )
-}
+}}
 
 
 function Tweets({ tweets }) {

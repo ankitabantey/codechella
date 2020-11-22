@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react'
 import axios from 'axios'
 import UserProvider from './providers/UserProvider'
+import EventProvider from './providers/EventProvider'
 import { extendTheme } from "@chakra-ui/react"
 
 // 2. Extend the theme to include custom colors, fonts, etc
@@ -25,9 +26,11 @@ const theme = extendTheme({ colors })
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
+      <EventProvider>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
+      </EventProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')

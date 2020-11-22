@@ -13,7 +13,10 @@ const EventSchema = schema({
     owner: {type: String, unique: false},
     ownerID: {type: String, unique: false},
     startDate: { type: Date, default: Date.now() },
-    endDate: { type: Date }
+    endDate: { type: Date },
+    date: String,
+    virtual: {type: Boolean},
+    url: {type: String}
 
 });
 
