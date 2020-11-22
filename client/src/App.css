@@ -7,9 +7,6 @@ body {
   display: flex;
   height: 100vh;
   max-width: 1300px;
-  margin-left: auto;
-  margin-right: auto;
-    /* adds up to 100 */
   padding: 0 10px;
 
 }
