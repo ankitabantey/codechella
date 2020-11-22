@@ -38,4 +38,9 @@
   background-color: rgb(247, 249, 250);
   border-radius: 16px;
 }
+
+.link {
+  text-decoration: underline;
+  color: rgb(29, 161, 242);
+}
   

@@ -17,16 +17,34 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import { Button } from "@material-ui/core";
+import { loadModules } from 'esri-loader';
+import { WebMapView } from '../components/WebMapView';
+import { Grid, GridItem, Box, Flex, Spacer } from "@chakra-ui/react"
+import { Spinner } from '@chakra-ui/react'
+import axios from 'axios'
+import React, {useContext} from 'react'
+import TweetList from '../components/TweetList'
+import EventInfo from '../components/EventInfo'
+import EventProvider, {EventContext} from '../providers/EventProvider.js';
 
 export default function Home() {
   const [events, setEvents] = React.useState(null);
   const [selectedEvent, setSelectedEvent] = React.useState(null);
 
-  async function getEvents() {
-    const res = await axios.get("/getEvents");
-    setEvents(res.data.events);
-  }
+    const eventContext = useContext(EventContext);
 
+    const [events, setEvents] = React.useState(null);
+    const [selectedEvent, setSelectedEvent] = React.useState(null);
+
+    async function getEvents() {
+        const res = await axios.get('/getEvents')
+        setEvents(res.data.events)
+    }
+
+    React.useEffect(() => {
+
+        getEvents()
+      
   React.useEffect(() => {
     getEvents();
   }, []);
@@ -53,7 +71,6 @@ export default function Home() {
               <SidebarOption Icon={ListAltIcon} text="Lists" />
               <SidebarOption Icon={PermIdentityIcon} text="Profile" />
               <SidebarOption Icon={MoreHorizIcon} text="More" />
-
               {/* Button -> Tweet */}
               <Button variant="outlined" className="siderbar__tweet" fullWidth>
                 TWEET
