@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <Box p={10}>
       <Flex>
-        <Box w="15vw" h="100vh" bg="transparent" mr="10px">
+        <Box w="200px" h="100vh" bg="transparent" mr="10px">
           {
             <div className="sidebar">
               {/* Twitter Icon */}
@@ -65,9 +65,9 @@ export default function Home() {
               {isSignedIn ?
                 <Avatar ml='40px' as='button' onClick={signOut} name={user.name} src={user.imageUrl} />
                 :
-                <Button bg="transparent" border="1px" onClick={signIn}>
-                  Login With Twitter
-        </Button>}
+                <Button variant='outlined' className='sidebar__tweet'  onClick={signIn}>
+                  Sign In
+              </Button>}
               <Button variant="outlined" className="siderbar__tweet" fullWidth>
                 TWEET
               </Button>
@@ -76,7 +76,7 @@ export default function Home() {
         </Box>
         <Grid
           h="100vh"
-          w="80vw"
+          w="calc(100vw - 250px)"
           templateRows="repeat(10, 1fr)"
           templateColumns="repeat(8, 1fr)"
           gap={4}

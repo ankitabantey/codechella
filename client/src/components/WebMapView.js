@@ -20,7 +20,7 @@ export class WebMapView extends React.Component {
       this.view = new MapView({
         container: this.mapRef.current,
         map: map,
-        center: [37.0902,-100.914 ],
+        // center: [37.0902,-90.914 ],
         zoom: 1
       });
 
