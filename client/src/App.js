@@ -11,10 +11,9 @@ function App() {
   return (
     <div className="App">
       {/* Siderbar */}
-      <Sidebar/>
+      {/* <Sidebar/> */}
       <Router>
         <main>
-          <Header/>
           <Navigation/>
         </main>
       </Router>
