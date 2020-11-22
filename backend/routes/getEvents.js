@@ -8,7 +8,7 @@ export default async (req, res) => {
     for(const event of events) {
         let q = event.hashtags.map(e => `#${e}`).join(' OR')
         const tweets = await twitterClient.tweets.search({q:q, count: 100, geocode:'39.72004,-75.91400,500km'})
-        eventsWithTweets.push({...event, tweets: tweets.statuses})
+        eventsWithTweets.push({...event, tweets: tweets.statuses.sort((a,b) => b.follower_count - a.follower_count)})
     }
 
     res.json({events: eventsWithTweets})
