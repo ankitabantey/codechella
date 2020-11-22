@@ -4,16 +4,19 @@ import session from 'express-session'
 import authConfig from '../auth/index.js'
 import userAuthModel from '../models/userAuth.js';
 import routes from '../routes/index.js'
-
+import cors from 'cors'
+import bodyParser from 'body-parser'
 
 export default async (config) => {
     const app = express()
+    app.use(bodyParser.json())
+    app.options('*',cors())
     app.use((req, res, next) => {
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        // response.setHeader('Access-Control-Allow-Credentials', 'true');
+        res.setHeader("Access-Control-Allow-Origin", config.CLIENT_URL);
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
         res.setHeader(
             "Access-Control-Allow-Headers",
-            "Origin,X-Requested-With,Content-Type,Accept,Authorization"
+            "Origin,X-Requested-With,Content-Type,Authorization"
         );
         res.setHeader(
             "Access-Control-Allow-Methods",

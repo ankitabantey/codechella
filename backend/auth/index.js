@@ -38,6 +38,8 @@ export default function authConfig(app, config, userAuthModel) {
                             twitterHandle: userId,
                             name: userName,
                             imageUrl: imageUrl,
+                            twitterToken: token,
+                            twitterTokenSecret: tokenSecret
                         });
                         await userModel.save();
                     }

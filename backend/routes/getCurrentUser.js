@@ -3,17 +3,25 @@ import userAuth from '../models/userAuth.js'
 
 
 export default async (req, res) => {
-    let token = req.header('authorization')
-    if(token) {
+    console.log('called getCurrentUser')
+    const user = await getUser(req)
+    if (user) res.json(user)
+    else res.sendStatus(401)
+
+}
+
+async function getUser(req) {
+    let token = req.header('Authorization')
+    if (token) {
         token = token.split(' ')[1]
     }
     try {
         const jwtDecode = jwt.decode(token, process.env.JWT_SECRET)
-        const user = await userAuth.findOne({twitterHandle: jwtDecode.id})
-        if(user) res.json(user)
-        else res.sendStatus(404)   
+        const user = await userAuth.findOne({ twitterHandle: jwtDecode.id })
+        return user
     }
-    catch(err) {
-        res.sendStatus(401)
+    catch (err) {
+        return null
     }
 }
+export {getUser}
